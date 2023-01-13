@@ -2,7 +2,7 @@ import { useState } from "react";
 const { OpenAIApi, Configuration } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 const openai = new OpenAIApi(configuration);
@@ -26,6 +26,10 @@ const Chat = () => {
       .createCompletion({
         model: "text-davinci-003",
         prompt: input,
+        max_tokens: 32,
+        n: 1,
+        stop: ".",
+        temperature: 0.5,
       })
       .then((response) => {
         const message = response.data.choices[0].text;
